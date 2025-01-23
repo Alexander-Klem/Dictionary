@@ -30,6 +30,8 @@
                 <button type="submit">
                     Search
                 </button>
+
+                <button type="button">Save</button>
             </form>
 
             <div class="error"></div>
@@ -57,6 +59,21 @@
                     </div>
             </div>
         </main>
+    </div>
+
+    <div class="modal">
+        <div class="modal__dialog">
+            <div class="modal__content">
+        <form action="#">
+            <div class="modal__close">&times;</div>
+            <div class="modal__title">Write a word</div>
+            <input type="text" required placeholder="Word..." class="modal__input" name="Word" style="color: black;">
+            <div class="modal__title">Write definition</div>
+            <input type="text" required placeholder="Definition..." class="modal__input" name="Definition"style="color: black;" >
+        </form>
+        <button class="button">Save</button>
+            </div>
+        </div>
     </div>
 
     <script src="js/scripts.js"></script>
