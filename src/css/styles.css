@@ -94,6 +94,11 @@ h1 {
   font-size: 32px;
   font-weight: 700;
 }
+.results-sound {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
 .results-item__part {
   font-size: 14px;
   color: #a164cf;
