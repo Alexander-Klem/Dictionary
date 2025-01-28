@@ -19,6 +19,35 @@ const resultsList = document.querySelector(`.results-list`);
 const errorContainer = document.querySelector(`.error`);
 
 
+const modal = document.querySelector(`.modal`);
+const modalCloseBtn = document.querySelector(`.modal__close`);
+const modalShowBtn = document.querySelector(`.save`);
+
+
+const closeModalacross = (event) => { 
+    if (event.target === modal) {closeModal();}
+}
+
+const keydownCloseModal = (event) => { 
+    if (event.code === `Escape` && modal.classList.contains(`show`)) {closeModal()} 
+}
+
+const showModal = () => { 
+    modal.classList.add(`show`, `fade`);
+    // modal.classList.add(`fade`);
+    modal.classList.remove(`hide`);
+    document.body.style.overflow = `hidden`;
+    // modal.classList.toggle(`show`)
+}
+
+const closeModal = () => { 
+    modal.classList.add('hide', `fade`);
+    // modal.classList.remove(`fade`);
+    modal.classList.remove('show');
+    document.body.style.overflow = ``;
+    // modal.classList.toggle(`show`)
+}
+
 const showError = (error) => { 
     errorContainer.style.display = `block`;
     resultsWrapper.style.display = `none`;
@@ -119,3 +148,7 @@ const handleSound = () => {
 input.addEventListener(`keyup`, handleKeyUp);
 form.addEventListener(`submit`, handleSubmit);
 soundButton.addEventListener(`click`, handleSound);
+modalShowBtn.addEventListener(`click`, showModal);
+modalCloseBtn.addEventListener(`click`, closeModal);
+document.addEventListener(`keydown`, keydownCloseModal);
+modal.addEventListener(`click`, closeModalacross);
