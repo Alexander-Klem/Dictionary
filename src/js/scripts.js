@@ -20,12 +20,117 @@ const errorContainer = document.querySelector(`.error`);
 
 
 const modal = document.querySelector(`.modal`);
-const modalCloseBtn = document.querySelector(`.modal__close`);
 const modalShowBtn = document.querySelector(`.save`);
+const formSave = document.querySelector(`.formSave`);
+
+
+class Words { 
+    constructor() { 
+
+    }
+}
+
+const message = {
+    loading: `/images/spinner.svg`,
+    success: `Word has been saved`,
+    failure: `Something goes wrong...`
+}
+
+const getResources = async(url) => { 
+    const res = await fetch(url);
+
+    if (!res.ok) { 
+        throw new Error(`Coudn't fetch ${url}, status ${res.status}`);
+    }
+
+    return await res.json();
+}
+
+getResources(`http://localhost:3000/request`)
+    .then((data) => createCard(data));
+
+function createCard(data) { 
+    data.forEach(({ Word, Definition }) => { 
+        const element = document.createElement(`div`);
+        element.classList.add(`.modal__title`);
+        element.innerHTML = `
+        <div>${Word} - ${Definition}</div>
+        `;
+
+        document.querySelector(`.main`).append(element);
+    })
+}
+
+const postData = async(url, data) => { 
+    const res = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: data
+    });
+
+    return await res.json();
+}
+
+const bindPostData = (form) => { 
+    form.addEventListener(`submit`, (event) => {
+        event.preventDefault();
+
+        const statusMessage = document.createElement(`img`);
+        statusMessage.src = message.loading;
+        statusMessage.style.cssText = `
+        display: block;
+        margin: 0 auto;
+        `;
+        form.append(statusMessage);
+
+        const formData = new FormData(form);
+
+        const json = JSON.stringify(Object.fromEntries(formData.entries()));
+        
+        postData(`http://localhost:3000/request`, json)  
+          .then((data) => {
+            console.log(data);
+            showThanksModal(message.success);
+            statusMessage.remove();
+        }).catch(() => { 
+            showThanksModal(message.failure);
+        }).finally(() => { 
+            form.reset();
+        })
+    });
+
+    function showThanksModal(message) { 
+        const prevModalDialog = document.querySelector(`.modal__dialog`);
+
+        prevModalDialog.classList.add(`none`);
+        showModal();
+
+        const thanksModal = document.createElement(`div`);
+        thanksModal.classList.add(`modal__dialog`, `fade`);
+        thanksModal.innerHTML = `
+        <div class = 'modal__content'>
+            <div class = 'modal__close'>&times;</div>
+            <div class="modal__title">${message}</div>
+        </div>
+        `;
+
+        document.querySelector(`.modal`).append(thanksModal);
+        setTimeout(() => {
+            thanksModal.remove();
+            prevModalDialog.classList.add(`show`);
+            prevModalDialog.classList.remove(`none`);
+            closeModal();
+        }, 3000);
+    }
+}
+
+bindPostData(formSave);
 
 
 const closeModalacross = (event) => { 
-    if (event.target === modal) {closeModal();}
+    if (event.target === modal || event.target.getAttribute(`data-close`) ===  ``) {closeModal();}
 }
 
 const keydownCloseModal = (event) => { 
@@ -149,6 +254,5 @@ input.addEventListener(`keyup`, handleKeyUp);
 form.addEventListener(`submit`, handleSubmit);
 soundButton.addEventListener(`click`, handleSound);
 modalShowBtn.addEventListener(`click`, showModal);
-modalCloseBtn.addEventListener(`click`, closeModal);
 document.addEventListener(`keydown`, keydownCloseModal);
 modal.addEventListener(`click`, closeModalacross);

@@ -166,7 +166,7 @@ h1 {
     display: none;
     background-color: rgba(0, 0, 0, 0.5);
     &__dialog{
-        max-width:500px;
+        max-width: 500px;
         margin: 100px auto;
     }
     &__content{
@@ -191,6 +191,7 @@ h1 {
     }
     &__title{
         font-size: 22px;
+        display: block;
     }
     &__input{
         display: block;

@@ -198,6 +198,7 @@ h1 {
 }
 .modal__title {
   font-size: 22px;
+  display: block;
 }
 .modal__input {
   display: block;
