@@ -1,0 +1,43 @@
+// DB
+const createWords = (data) => {
+    data.forEach((item, index) => {
+        // const element = document.querySelector(`.dictionary__content`);
+        const div = document.createElement(`div`);
+        const button = document.createElement(`button`);
+        let buttonId = '';
+        button.classList.add(`dictionary__deleteBtn`);
+        button.innerText = `Delete`;
+        div.classList.add(`dictionary__word`);
+        buttonId = item.id;
+        button.id = buttonId;
+        div.innerHTML = `
+        <p style = "margin: 0">${item.Word} - ${item.Definition}</p>
+        `;
+        document.querySelector(`.dictionary__words`).append(div);
+        div.append(button);
+
+        button.addEventListener(`click`, (event) => {
+            
+            if (event.target.id === item.id) {
+                console.log(data);
+                const btn = event.target;
+                const parent = btn.parentNode;
+                parent.remove();
+                let ind = -1;
+    
+                for (let i = 0; i < data.length; i++) {
+                    ind = i;
+                    break;
+                }
+    
+                if (ind !== -1) {
+                    data.splice(ind, 1);
+                }
+                console.log();
+            }
+        });
+    });
+
+
+    
+}

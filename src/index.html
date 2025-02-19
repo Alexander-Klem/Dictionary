@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css"> -->
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +19,7 @@
 
             <form class="form">
                 <div class="form-group">
-                    <input 
-                    type="text" 
-                    placeholder="Type a word..." 
+                    <input type="text" placeholder="Type a word..." 
                     name="word" 
                     id="word-input"
                     autocomplete="off"
@@ -31,22 +30,20 @@
                     Search
                 </button>
 
-                <button type="button" class="save">Save</button>
-                <button type="button" class="dictionary">Dictionary</button>
+                <button type="button" class="save">Add</button>
+                <button type="button" class="dictionaryBtn">Dictionary</button>
             </form>
 
             <div class="error"></div>
 
             <div class="results">
                 <div class="results-info">
-                    <div class="results-word"></div>
-
-                    <div class="results-sound">
+                   <!-- <div class="results-sound">
                         <img src="./images/icons8-звук-50.png" alt="">
-                    </div>
+                    </div> -->
                 </div>
-                    <div class="results-list">
-                        <!-- <div class="results-item">
+                    <!-- <div class="results-list">
+                        <div class="results-item">
                             <div class="results-item__part">Noun</div>
                             <div class="results-item__definitions">
                                 <div class="results-item__definition">
@@ -56,9 +53,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                    </div>
+                        </div> 
+                    </div> -->
             </div>
+            <div class="results-word"></div>
         </main>
     </div>
 
@@ -77,6 +75,18 @@
         </div>
     </div>
 
+    <div class="dictionary">
+        <div class="dictionary__dialog"> 
+            <div class="dictionary__content">  
+                <div class="dictionary__close" data-close>&times;</div>
+                <div class="dictionary__words">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="js/scripts.js"></script>
 </body>
 </html>

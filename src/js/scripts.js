@@ -1,43 +1,81 @@
-// TODO: получить данные по API
-// TODO: вставить слово в контейнер results-word
-// TODO: добавить функционал для воспроизведения звука
-// TODO: вставить полученные данные в конейнер с результатами
-
-let state = {
-    word: ``,
-    meanings: [],
-    phonetics: []
-}
-
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
-const input = document.getElementById(`word-input`);
-const form = document.querySelector(`.form`);
-const containerWord = document.querySelector(`.results-word`);
-const soundButton = document.querySelector('.results-sound');
-const resultsWrapper = document.querySelector(`.results`);
-const resultsList = document.querySelector(`.results-list`);
+const urlDB = `http://localhost:3000/request`;
+
+
+const input = document.querySelector(`#word-input`);
+const form = document.querySelector(`.form`); 
+// const resultContainer = document.querySelector(`.results`);
+const resultsWords = document.querySelector(`.results-word`)
+const containerWord = document.querySelector(`.results-info`);
 const errorContainer = document.querySelector(`.error`);
-
-
 const modal = document.querySelector(`.modal`);
 const modalShowBtn = document.querySelector(`.save`);
 const formSave = document.querySelector(`.formSave`);
+const dictionaryBtn = document.querySelector(`.dictionaryBtn`);
+const dictionary = document.querySelector(`.dictionary`);
 
-
-class Words { 
-    constructor() { 
-
-    }
-}
 
 const message = {
-    loading: `/images/spinner.svg`,
+    loading: `/src/images/spinner.svg`,
     success: `Word has been saved`,
     failure: `Something goes wrong...`
 }
 
+const state = {
+    Word: "",
+}
+
+
+//class
+class Words { 
+    constructor(id,Word,Definition,parentSelector) { 
+        this.Word = Word;
+        this.Definition = Definition;
+        this.id = id;
+        this.parent = document.querySelector(parentSelector);
+        this.button = document.createElement(`button`);
+    }
+
+    render() { 
+        this.button.classList.add(`dictionary__deleteBtn`);
+        this.button.id = this.id;
+        this.button.innerText = `Delete`;
+        const element = document.createElement(`div`);
+        element.classList.add(`dictionary__word`);
+        element.innerHTML = `
+            <p style = "margin: 0">${this.Word} - ${this.Definition}</p>
+        `;
+        element.append(this.button);
+        this.parent.append(element);
+
+
+        this.button.addEventListener(`click`, (event) => { 
+            getResources(`http://localhost:3000/request`)
+                .then((data) => { 
+                    data.forEach((item, index) => { 
+                        if (event.target.id === item.id) {               
+                            const btn = event.target;
+                            const parent = btn.parentNode;
+                            parent.remove();
+
+                            // axios.delete(`http://localhost:3000/request/${item.id}`)
+                            //     .then((data) => { 
+                            //         console.log(data);
+                            //     })
+
+                            deleteResources(`http://localhost:3000/request/${item.id}`)
+                            .then(getResources(`http://localhost:3000/request`))
+                          
+                        }
+                    })
+                    
+            })
+        })
+    }  
+}
+
 const getResources = async(url) => { 
-    const res = await fetch(url);
+    const res = await fetch(url); 
 
     if (!res.ok) { 
         throw new Error(`Coudn't fetch ${url}, status ${res.status}`);
@@ -46,20 +84,27 @@ const getResources = async(url) => {
     return await res.json();
 }
 
-getResources(`http://localhost:3000/request`)
-    .then((data) => createCard(data));
+const deleteResources = async (url) => { 
+    const res = await fetch(url, { method: `DELETE` })
+ 
+    if (!res.ok) { 
+        throw new Error(`Coudn't fetch ${url}, status ${res.status}`);
+    }
 
-function createCard(data) { 
-    data.forEach(({ Word, Definition }) => { 
-        const element = document.createElement(`div`);
-        element.classList.add(`.modal__title`);
-        element.innerHTML = `
-        <div>${Word} - ${Definition}</div>
-        `;
-
-        document.querySelector(`.main`).append(element);
-    })
+    return await res.json();
 }
+
+
+
+
+//class
+getResources(`http://localhost:3000/request`)
+.then((data) => { 
+            data.forEach(({ id, Word, Definition }) => { 
+                new Words(id, Word, Definition, `.dictionary__words`).render();
+            })
+        }); 
+        
 
 const postData = async(url, data) => { 
     const res = await fetch(url, {
@@ -85,13 +130,14 @@ const bindPostData = (form) => {
         `;
         form.append(statusMessage);
 
-        const formData = new FormData(form);
-
+        const formData = new FormData(form); 
+        
+                
         const json = JSON.stringify(Object.fromEntries(formData.entries()));
+
         
         postData(`http://localhost:3000/request`, json)  
-          .then((data) => {
-            console.log(data);
+            .then((data) => { 
             showThanksModal(message.success);
             statusMessage.remove();
         }).catch(() => { 
@@ -122,7 +168,8 @@ const bindPostData = (form) => {
             prevModalDialog.classList.add(`show`);
             prevModalDialog.classList.remove(`none`);
             closeModal();
-        }, 3000);
+            location.reload();
+        }, 1000);
     }
 }
 
@@ -137,9 +184,18 @@ const keydownCloseModal = (event) => {
     if (event.code === `Escape` && modal.classList.contains(`show`)) {closeModal()} 
 }
 
+const closeDictionaryacross = (event) => { 
+    if (event.target === dictionary || event.target.getAttribute(`data-close`) === ``) {
+        closeDictionary();
+    }
+}
+
+const keydownCloseDictionary = (event) => { 
+    if (event.code === `Escape` && dictionary.classList.contains(`showDictionary`)) {closeDictionary()} 
+}
+
 const showModal = () => { 
     modal.classList.add(`show`, `fade`);
-    // modal.classList.add(`fade`);
     modal.classList.remove(`hide`);
     document.body.style.overflow = `hidden`;
     // modal.classList.toggle(`show`)
@@ -147,8 +203,21 @@ const showModal = () => {
 
 const closeModal = () => { 
     modal.classList.add('hide', `fade`);
-    // modal.classList.remove(`fade`);
     modal.classList.remove('show');
+    document.body.style.overflow = ``;
+    // modal.classList.toggle(`show`)
+}
+
+const showDictionary = () => { 
+    dictionary.classList.add(`showDictionary`, `fade`);
+    dictionary.classList.remove(`closeDictionary`);
+    document.body.style.overflow = `hidden`;
+    // modal.classList.toggle(`show`)
+}
+
+const closeDictionary = () => { 
+    dictionary.classList.add('closeDictionary', `fade`);
+    dictionary.classList.remove('showDictionary');
     document.body.style.overflow = ``;
     // modal.classList.toggle(`show`)
 }
@@ -160,99 +229,142 @@ const showError = (error) => {
     errorContainer.innerText = error.message;
 }
 
-const renderDefinition = (itemDefinition) => { 
-    const example = itemDefinition.example ?
-        `<div class="results-item__example">
-        <p>Example: <span>${itemDefinition.example}</span></p>
-        </div>`
-        : ``;
 
-return `<div class="results-item__definition">
-        <p>${itemDefinition.definition}</p>
-        ${example}
-        </div>`
+const fail = (form) => {
+    errorContainer.style.display = `block`;
+    resultContainer.style.display = `none`;
+    errorContainer.innerText = `Такого слова в базе нет`
+    form.reset();
+    setTimeout(() => {
+        errorContainer.style.display = `none`;
+        resultContainer.style.display = `block`;
+    },3000)
 }
 
-const getDefinitions = (definition) => {
-    return definition.map(renderDefinition).join('');
-}
+// const renderDefinition = (Word, Definition) => { 
+//     const element = document.createElement(`div`);
+//     element.innerHTML = `
+//     <div class="results-info">
+//         ${Word} - ${Definition}
+//     </div>
+//     `;
+//     resultContainer.append(element);
+//     return element;
+// }
 
-const renderItem = (item) => { 
-    // const itemDefinition = item.definitions[0];
-return ` <div class="results-item">
-            <div class="results-item__part">${item.partOfSpeech}</div>
-            <div class="results-item__definitions">
-            ${getDefinitions(item.definitions)}
-        </div>
-    </div>`
-}
-
-const showResults = () => { 
-    resultsWrapper.style.display = `block`;
-    resultsList.innerHTML = ``;
-    
-   state.meanings.forEach(item => {
-        resultsList.innerHTML += renderItem(item);
-    });
-}
-
-const insertWord = () => { 
-    containerWord.innerText = state.word;
-}
-
-
-const handleSubmit = async (event) => { 
+const handleSubmit = async(event) => { 
     event.preventDefault();
+    resultContainer.innerHTML = ``;
 
-    // if (!state.word.trim()) return;
+    if (!state.Word.trim()) return;
 
-    try {
-        const response = await fetch(`${url} ${state.word}`);
-        const data = await response.json();
-
-        if (response.ok && data.length) {
-            errorContainer.style.display = `none`;
-            const item = data[0];
-
-            state = {
-                ...state,
-                meanings: item.meanings,
-                phonetics: item.phonetics,
-            }
-
-            insertWord();
-            showResults();
-        } else { 
-            showError(data);
-        }
-    } catch (error) {
-        console.log(error);
-    }
-
+    getResources(urlDB)
+            .then((data) => { 
+            resultContainer.innerHTML = ``;
+                data.some((item, index) => { 
+                if (item.Word.toLowerCase() === state.Word.toLowerCase() || item.Definition.toLowerCase() === state.Word.toLowerCase()) {
+                        const element = document.createElement(`div`);
+                        element.innerHTML = `
+                        <div class="results-info">
+                            ${item.Word} - ${item.Definition}
+                        </div>
+                        `;
+                        resultContainer.append(element);
+                        return element;
+                    } else if ((index === Object.keys(data).length-1)) { 
+                        fail(form);
+                    }
+            })
+            }).catch((error) => { 
+                console.log(error)
+            }).finally(() => {form.reset();})
     
 }
 
-const handleKeyUp = (event) => {
+
+const handleKeyUp = (event) => { 
     const value = event.target.value;
-    state.word = value;
-};
-
-
-const handleSound = () => { 
-    if (state.phonetics.length) { 
-        const sound = state.phonetics[0];
-
-        if (sound.audio) { 
-            new Audio(sound.audio).play();
-        }
-    }
+    state.Word = value;
 }
+
+
 
 //EVENTS
+// 1-ый вариант поиска
+input.oninput = function () {
+    resultsWords.innerHTML = ``;
+    // resultContainer.innerHTML = ``;
+    let val = this.value.trim().toLowerCase();
+    getResources(urlDB).then((data) => {
+        if (val !== '') {
+            data.forEach(({ Word, Definition, id }) => {
+                if (Word.toLowerCase().includes(val) == 1) {
+                    const element = document.createElement(`p`);
+                    element.classList.add(`results-word`);
+                    element.id = id;
+        //             element.innerHTML = `
+        // ${insertMark(Word, Word.toLowerCase().includes(val), val.length)} - ${Definition}
+                    //             `;
+                    element.innerHTML = `
+                    ${Word} - ${Definition}
+                    `;
+                    
+                    resultsWords.append(element);
+                } 
+                if (Definition.toLowerCase().includes(val) == 1) { 
+                    const element = document.createElement(`p`);
+                    element.classList.add(`results-word`);
+                    element.id = id;
+        //             element.innerHTML = `
+        // ${insertMark(Definition, Definition.toLowerCase().includes(val), val.length)} - ${Word}
+        //             `;
+                    
+                    element.innerHTML = `
+                    ${Definition} - ${Word}
+                    `;
+                    resultsWords.append(element);
+                    }
+            })
+        }
+    })
+}
 
+// const insertMark = (str, pos, len) => { 
+// return str.slice (0, pos) + `<mark>` + str.slice (pos, pos + len - 1) + `</mark>` + str.slice (pos + len - 1);
+// }
+
+// 2-ой вариант поиска
+// const showList = () => {
+//     resultsWords.innerHTML = ``;
+//     getResources(urlDB).then((data) => {
+//         data.filter((item) => {
+//             return (
+//                 item.Word.toLowerCase().includes(search_term) || item.Definition.toLowerCase().includes(search_term)
+//             );
+//         }).forEach((e) => {
+//             const li = document.createElement(`li`);
+//             li.innerHTML = `${e.Word} - ${e.Definition}`;
+//             resultsWords.append(li);
+//         })
+//     })
+// }
+
+// 2-ой вариант поиска
+// showList();
+
+// 2-ой вариант поиска
+// let search_term = ``;
+
+// 2-ой вариант поиска
+// input.addEventListener(`input`, (event) => {
+//     search_term = event.target.value.toLowerCase();
+//     showList();
+// })
 input.addEventListener(`keyup`, handleKeyUp);
 form.addEventListener(`submit`, handleSubmit);
-soundButton.addEventListener(`click`, handleSound);
 modalShowBtn.addEventListener(`click`, showModal);
 document.addEventListener(`keydown`, keydownCloseModal);
 modal.addEventListener(`click`, closeModalacross);
+dictionaryBtn.addEventListener(`click`, showDictionary);
+document.addEventListener(`keydown`, keydownCloseDictionary);
+dictionary.addEventListener(`click`, closeDictionaryacross);

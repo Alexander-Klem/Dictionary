@@ -1,0 +1,24 @@
+{
+  "request": [
+    {
+      "id": "cc86",
+      "Word": "European Pharmacopeia",
+      "Definition": "Европейская фармакопея"
+    },
+    {
+      "id": "0fea",
+      "Word": "анчоус",
+      "Definition": "anchovy"
+    },
+    {
+      "id": "fd1b",
+      "Word": "good medicine practice",
+      "Definition": "надлежащая медицинская практика"
+    },
+    {
+      "id": "3847",
+      "Word": "123",
+      "Definition": "das"
+    }
+  ]
+}
