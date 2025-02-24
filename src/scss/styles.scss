@@ -1,9 +1,13 @@
-@charset "UTF-8";
+    @charset "UTF-8";
 .app{
-    width: 100vw;
+    width: 100%;
+    height: 300px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    // align-items: center;
+    // justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
 }
 
 .main {
@@ -11,7 +15,7 @@
     width: 920px;
     border-radius: 12px;
     padding: 32px;
-    margin: 0 auto;
+    // margin: 0 auto;
 }
 
 h1 {
@@ -162,66 +166,61 @@ h1 {
     display: none;
 }
 
-.modal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1050;
-    width: 100%;
-    height: 100%;
-    display: none;
-    background-color: rgba(0, 0, 0, 0.5);
-    &__dialog{
-        max-width: 500px;
-        margin: 100px auto;
-    }
+
+.modal  {
+    width: 30%;
+    // background-color:rgba(0,0,0, 0.5);
+
     &__content{
-        position: relative;
-        width: 90%;
-        padding: 40px;
-        background-color: rgb(85, 85, 85);
-        border: 1px solid rgba(0,0,0, 0.2);
-        border-radius: 20px;
-        max-height: 70vh;
-        overflow-y: auto;
-    }
+                position: relative;
+                width: 100%;
+                height: 100%;
+                padding: 30px;
+                background-color: rgb(85, 85, 85);
+                border: 1px solid rgba(0,0,0, 0.2);
+                border-radius: 20px;
+                max-height: 100vh;
+                overflow-y: auto;
+    }   
     &__close{
-        position: absolute;
-        top: 8px;
-        right: 14px;
-        cursor: pointer;
-        font-size: 40px;
-        color: #000;
-        // opacity: 0.5;
-        // border: none
-    }
-    &__title{
-        font-size: 22px;
-        display: block;
-    }
-    &__input{
-        display: block;
-        // margin-top: 15px;
-        margin-bottom: 15px;
-        width: 300px;
-        height: 50px;
-        background-color: #fff;
-        // border: none;
-        font-size: 18px;
-        outline: 1px solid black;
-        border-radius: 10px;
-    }
+                position: absolute;
+                top: 8px;
+                right: 14px;
+                cursor: pointer;
+                font-size: 40px;
+                color: #000;
+                // opacity: 0.5;
+                // border: none
+            }
+            &__title{
+                font-size: 22px;
+                display: block;
+            }
+            &__input{
+                display: block;
+                // margin-top: 15px;
+                margin-bottom: 15px;
+                width: 100%;
+                height: 50px;
+                background-color: #fff;
+                // border: none;
+                font-size: 18px;
+                outline: 1px solid black;
+                border-radius: 10px;
+            }
+
 }
+
 .btn{
-    width: 50%;
+    width: 30%;
     height: 60px;
-    display: block;
-    // margin: 0 auto;
-    margin-top: 20px;
+    // display: block;
+//     margin: 0 auto;
+//     margin-top: 20px;
     border-radius: 10px;
     background: #000;
     cursor: pointer;
-    font-size: 20px;
+    font-size:   20px;
 
     &:hover{
         background: rgba(0, 0, 0, 0.5)
@@ -258,7 +257,6 @@ h1 {
     &__dialog{
         max-width: 1300px;
         margin: 90px auto;
-        border: 3px solid red;
     } 
     &__content{
         position: relative;
@@ -270,7 +268,6 @@ h1 {
         max-height: 70vh;
         overflow-y: auto;
         color: black;
-        border: 3px solid green;
     }
     &__close{
         position: absolute;
@@ -296,9 +293,9 @@ h1 {
     }
 
     &__deleteBtn{
-        width: 30%;
-        height: 30%;
-        display: block;
+        width: 80px;
+        height: 30px;
+        // display: block;
         // margin: 0 auto;
         margin-bottom: 20px;
         border-radius: 10px;
@@ -310,6 +307,19 @@ h1 {
             background: rgba(0, 0, 0, 0.5)
         }
 }
+
+    &__word{
+        font-size: 20px;
+        background-color: rgb(114, 114, 114);
+        border-bottom: 1px solid black;
+    }
+
+    &__paragraph{
+        border-bottom: 1px solid black;
+        font-size: 60px;
+        font-weight: bold;
+        margin: 0;
+    }
 }
 .showDictionary{
     display: block;
@@ -319,6 +329,14 @@ h1 {
     display: none;
 }
 
-// mark{
-//     background-color: lime;
-// }
+.element{
+    background-color: rgba(255, 255, 255, 0.15);
+    color: black;
+    border-radius: 5px;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+}
+
+span{
+    font-size: 60px;
+    font-weight: bold;
+}

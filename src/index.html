@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Medivoc</title>
     <!-- <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css"> -->
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <title>Dictionary</title>
+    <!-- <title>Dictionary</title> -->
 </head>
 <body>
     <div class="app">
         <main class="main">
-            <h1>Your best <span>Dictionary</span></h1>
+            <h1>Medivoc</h1>
 
             <form class="form">
                 <div class="form-group">
@@ -30,9 +30,11 @@
                     Search
                 </button>
 
-                <button type="button" class="save">Add</button>
+                <!-- <button type="button" class="save">Add</button> -->
                 <button type="button" class="dictionaryBtn">Dictionary</button>
             </form>
+
+            
 
             <div class="error"></div>
 
@@ -57,30 +59,60 @@
                     </div> -->
             </div>
             <div class="results-word"></div>
-        </main>
-    </div>
 
-    <div class="modal">
-        <div class="modal__dialog">
-            <div class="modal__content">
-        <form action="#" class="formSave">
-            <div class="modal__close" data-close>&times;</div>
-            <div class="modal__title">Write a word</div>
-            <input type="text" required placeholder="Word..." class="modal__input" name="Word" style="color: black;">
-            <div class="modal__title">Write a definition</div>
-            <input type="text" required placeholder="Definition..." class="modal__input" name="Definition"style="color: black;" >
-            <button class="btn">Save</button>
-        </form>  
+            
+
+        </main>
+
+        <div class="modal">
+            <div class="modal__dialog">
+                <div class="modal__content">
+            <form action="#" class="formSave">
+                <div class="modal__close" data-close>&times;</div>
+                <div class="modal__title">Write a word</div>
+                <input type="text" required placeholder="Word..." class="modal__input" name="Word" style="color: black;">
+                <div class="modal__title">Write a definition</div>
+                <input type="text" required placeholder="Definition..." class="modal__input" name="Definition"style="color: black;" >
+                <button class="btn">Save</button>
+            </form>  
+                </div>
             </div>
         </div>
     </div>
+
+    
 
     <div class="dictionary">
         <div class="dictionary__dialog"> 
             <div class="dictionary__content">  
                 <div class="dictionary__close" data-close>&times;</div>
-                <div class="dictionary__words">
-                </div>
+                <!-- <div class="dictionary__words"> -->
+                    <div class="dictionary__wordA"><p class="dictionary__paragraph">A</p></div>
+                    <div class="dictionary__wordB"><p class="dictionary__paragraph">B</p></div>
+                    <div class="dictionary__wordC"><p class="dictionary__paragraph">C</p></div>
+                    <div class="dictionary__wordD"><p class="dictionary__paragraph">D</p></div>
+                    <div class="dictionary__wordE"><p class="dictionary__paragraph">E</p></div>
+                    <div class="dictionary__wordF"><p class="dictionary__paragraph">F</p></div>
+                    <div class="dictionary__wordG"><p class="dictionary__paragraph">G</p></div>
+                    <div class="dictionary__wordH"><p class="dictionary__paragraph">H</p></div>
+                    <div class="dictionary__wordI"><p class="dictionary__paragraph">I</p></div>
+                    <div class="dictionary__wordJ"><p class="dictionary__paragraph">J</p></div>
+                    <div class="dictionary__wordK"><p class="dictionary__paragraph">K</p></div>
+                    <div class="dictionary__wordL"><p class="dictionary__paragraph">L</p></div>
+                    <div class="dictionary__wordM"><p class="dictionary__paragraph">M</p></div>
+                    <div class="dictionary__wordN"><p class="dictionary__paragraph">N</p></div>
+                    <div class="dictionary__wordO"><p class="dictionary__paragraph">O</p></div>
+                    <div class="dictionary__wordP"><p class="dictionary__paragraph">P</p></div>
+                    <div class="dictionary__wordQ"><p class="dictionary__paragraph">Q</p></div>
+                    <div class="dictionary__wordR"><p class="dictionary__paragraph">R</p></div>
+                    <div class="dictionary__wordS"><p class="dictionary__paragraph">S</p></div>
+                    <div class="dictionary__wordT"><p class="dictionary__paragraph">T</p></div>
+                    <div class="dictionary__wordU"><p class="dictionary__paragraph">U</p></div>
+                    <div class="dictionary__wordV"><p class="dictionary__paragraph">V</p></div>
+                    <div class="dictionary__wordX"><p class="dictionary__paragraph">X</p></div>
+                    <div class="dictionary__wordY"><p class="dictionary__paragraph">Y</p></div>
+                    <div class="dictionary__wordZ"><p class="dictionary__paragraph">Z</p></div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
