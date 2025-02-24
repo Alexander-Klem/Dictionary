@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medivoc</title>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css"> -->
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <!-- <title>Dictionary</title> -->
 </head>
 <body>
     <div class="app">
         <main class="main">
             <h1>Medivoc</h1>
 
+            <!-- Поиск слов в словаре -->
             <form class="form">
                 <div class="form-group">
                     <input type="text" placeholder="Type a word..." 
@@ -26,67 +25,42 @@
                     value=""
                     />
                 </div>
-                <button type="submit">
-                    Search
-                </button>
 
-                <!-- <button type="button" class="save">Add</button> -->
+
+                <!-- Кнопки "Поиск" и "Словарь" -->
+                <button type="submit">Search</button>
                 <button type="button" class="dictionaryBtn">Dictionary</button>
             </form>
 
-            
 
-            <div class="error"></div>
-
-            <div class="results">
-                <div class="results-info">
-                   <!-- <div class="results-sound">
-                        <img src="./images/icons8-звук-50.png" alt="">
-                    </div> -->
-                </div>
-                    <!-- <div class="results-list">
-                        <div class="results-item">
-                            <div class="results-item__part">Noun</div>
-                            <div class="results-item__definitions">
-                                <div class="results-item__definition">
-                                    <p>ASDAWDASD</p>
-                                    <div class="results-item__example">
-                                        OLO lASLDA ASDAWDASD
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                    </div> -->
-            </div>
+            <!-- Результат поиска слов -->
             <div class="results-word"></div>
-
-            
-
         </main>
 
+
+        <!-- Форма для заполнения словаря -->
         <div class="modal">
             <div class="modal__dialog">
                 <div class="modal__content">
-            <form action="#" class="formSave">
-                <div class="modal__close" data-close>&times;</div>
-                <div class="modal__title">Write a word</div>
-                <input type="text" required placeholder="Word..." class="modal__input" name="Word" style="color: black;">
-                <div class="modal__title">Write a definition</div>
-                <input type="text" required placeholder="Definition..." class="modal__input" name="Definition"style="color: black;" >
+        <form action="#" class="formSave">
+            <div class="modal__close" data-close>&times;</div>
+            <div class="modal__title">Write a word</div>
+            <input type="text" required placeholder="Word..." class="modal__input" name="Word" style="color: black;">
+            <div class="modal__title">Write a definition</div>
+            <input type="text" required placeholder="Definition..." class="modal__input" name="Definition"style="color: black;" >
                 <button class="btn">Save</button>
-            </form>  
+        </form>  
                 </div>
             </div>
         </div>
     </div>
 
     
-
+    <!-- Сам словарь -->
     <div class="dictionary">
         <div class="dictionary__dialog"> 
             <div class="dictionary__content">  
                 <div class="dictionary__close" data-close>&times;</div>
-                <!-- <div class="dictionary__words"> -->
                     <div class="dictionary__wordA"><p class="dictionary__paragraph">A</p></div>
                     <div class="dictionary__wordB"><p class="dictionary__paragraph">B</p></div>
                     <div class="dictionary__wordC"><p class="dictionary__paragraph">C</p></div>
@@ -112,13 +86,10 @@
                     <div class="dictionary__wordX"><p class="dictionary__paragraph">X</p></div>
                     <div class="dictionary__wordY"><p class="dictionary__paragraph">Y</p></div>
                     <div class="dictionary__wordZ"><p class="dictionary__paragraph">Z</p></div>
-                <!-- </div> -->
             </div>
         </div>
     </div>
 
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="js/scripts.js"></script>
 </body>
 </html>
