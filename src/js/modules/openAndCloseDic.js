@@ -29,4 +29,4 @@ const closeDictionary = () => {
 }
 }
 
-module.exports = openAndCloseDic;
+export default openAndCloseDic;

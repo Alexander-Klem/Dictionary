@@ -11,4 +11,4 @@ const deleteResources = async (url) => {
 }
 }
 
-module.exports = deleteOfRes;
+export default deleteOfRes;

@@ -11,4 +11,4 @@ const getResources = async(url) => {
 }
 }
 
-module.exports = getOfRes;
+export default getOfRes;

@@ -115,4 +115,4 @@ const sortWords = (url) => {
 sortWords(urlDB);
 }
 
-module.exports = sort;
+export default sort;

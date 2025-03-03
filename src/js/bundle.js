@@ -1,3 +1,7 @@
+/******/ (() => { // webpackBootstrap
+/*!**********************!*\
+  !*** ./js/script.js ***!
+  \**********************/
 // import bindPostData from './modules/bindPostData';
 // import capitalLetterOfWord from './modules/capitalLetter';
 // import data from './modules/data';
@@ -32,3 +36,6 @@
 window.addEventListener(`DOMContentLoaded`, () => {
 
 });
+/******/ })()
+;
+//# sourceMappingURL=bundle.js.map

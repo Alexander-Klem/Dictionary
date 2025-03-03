@@ -32,4 +32,4 @@ const handleSubmit = (event) => {
 }
 }
 
-module.exports = handeSubmit;
+export default handeSubmit;

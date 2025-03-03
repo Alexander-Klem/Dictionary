@@ -11,4 +11,4 @@ const capitalLetterOfWord = (Word, Definition) => {
     }
 }
 
-module.exports = capitalLetter;
+export default capitalLetter;

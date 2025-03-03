@@ -6,4 +6,4 @@ document.addEventListener(`keydown`, keydownCloseDictionary);
 dictionary.addEventListener(`click`, closeDictionaryacross);  
 }
 
-module.exports = events;
+export default events;

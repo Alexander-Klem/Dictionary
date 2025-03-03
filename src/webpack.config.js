@@ -4,14 +4,14 @@ let path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/js/script.js',
+    entry: './js/script.js',
     output: {
         filename: 'bundle.js',
-        parh: __dirname + '/dist/js'
+        path: __dirname + '/js'
     },
     watch: true,
 
-    develop: 'source-map',
+    devtool: 'source-map',
 
     module: {}
 };

@@ -35,4 +35,4 @@ input.oninput = function () {
 }
 }
 
-module.exports = input;
+export default input;

@@ -42,4 +42,4 @@ function renderWords() {
     }
 }
 
-module.exports = renderWords;
+export default renderWords;
