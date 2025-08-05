@@ -9,11 +9,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <link type="Image/x-icon" href="./images/enlarge.png" rel="icon">
 </head>
 <body>
     <div class="app">
         <main class="main">
-            <h1>Medivoc</h1>
+            <h1 class="main__header">
+                <img src="./images/enlarge.png" class="main__img" alt="">
+                Medivoc</h1>
 
             <!-- Поиск слов в словаре -->
             <form class="form">
@@ -28,9 +31,12 @@
 
 
                 <!-- Кнопки "Поиск" и "Словарь" -->
-                <button type="submit">Search</button>
-                <button type="button" class="dictionaryBtn">Dictionary</button>
+                <!-- <button type="submit">Search</button> -->
+                <button type="button" class="dictionaryBtnEng">Dictionary (Eng)</button>
+                <button type="button" class="dictionaryBtnRus">Dictionary (Ru)</button>
+                
             </form>
+            
 
 
             <!-- Результат поиска слов -->
@@ -48,48 +54,89 @@
             <input type="text" required placeholder="Word..." class="modal__input" name="Word" style="color: black;">
             <div class="modal__title">Write a definition</div>
             <input type="text" required placeholder="Definition..." class="modal__input" name="Definition"style="color: black;" >
-                <button class="btn">Save</button>
+            <button class="btn">Save</button>
         </form>  
                 </div>
             </div>
         </div>
     </div>
 
-    
-    <!-- Сам словарь -->
-    <div class="dictionary">
+    <div class="numberOfWords">
+    </div>
+    <!-- Сам словарь (Eng) -->
+    <div class="dictionaryEng dictionary ">
         <div class="dictionary__dialog"> 
             <div class="dictionary__content">  
                 <div class="dictionary__close" data-close>&times;</div>
-                    <div class="dictionary__wordA"><p class="dictionary__paragraph">A</p></div>
-                    <div class="dictionary__wordB"><p class="dictionary__paragraph">B</p></div>
-                    <div class="dictionary__wordC"><p class="dictionary__paragraph">C</p></div>
-                    <div class="dictionary__wordD"><p class="dictionary__paragraph">D</p></div>
-                    <div class="dictionary__wordE"><p class="dictionary__paragraph">E</p></div>
-                    <div class="dictionary__wordF"><p class="dictionary__paragraph">F</p></div>
-                    <div class="dictionary__wordG"><p class="dictionary__paragraph">G</p></div>
-                    <div class="dictionary__wordH"><p class="dictionary__paragraph">H</p></div>
-                    <div class="dictionary__wordI"><p class="dictionary__paragraph">I</p></div>
-                    <div class="dictionary__wordJ"><p class="dictionary__paragraph">J</p></div>
-                    <div class="dictionary__wordK"><p class="dictionary__paragraph">K</p></div>
-                    <div class="dictionary__wordL"><p class="dictionary__paragraph">L</p></div>
-                    <div class="dictionary__wordM"><p class="dictionary__paragraph">M</p></div>
-                    <div class="dictionary__wordN"><p class="dictionary__paragraph">N</p></div>
-                    <div class="dictionary__wordO"><p class="dictionary__paragraph">O</p></div>
-                    <div class="dictionary__wordP"><p class="dictionary__paragraph">P</p></div>
-                    <div class="dictionary__wordQ"><p class="dictionary__paragraph">Q</p></div>
-                    <div class="dictionary__wordR"><p class="dictionary__paragraph">R</p></div>
-                    <div class="dictionary__wordS"><p class="dictionary__paragraph">S</p></div>
-                    <div class="dictionary__wordT"><p class="dictionary__paragraph">T</p></div>
-                    <div class="dictionary__wordU"><p class="dictionary__paragraph">U</p></div>
-                    <div class="dictionary__wordV"><p class="dictionary__paragraph">V</p></div>
-                    <div class="dictionary__wordX"><p class="dictionary__paragraph">X</p></div>
-                    <div class="dictionary__wordY"><p class="dictionary__paragraph">Y</p></div>
-                    <div class="dictionary__wordZ"><p class="dictionary__paragraph">Z</p></div>
+                    <div class="dictionary__word_A"><p class="dictionary__paragraph">A</p></div>
+                    <div class="dictionary__word_B"><p class="dictionary__paragraph">B</p></div>
+                    <div class="dictionary__word_C"><p class="dictionary__paragraph">C</p></div>
+                    <div class="dictionary__word_D"><p class="dictionary__paragraph">D</p></div>
+                    <div class="dictionary__word_E"><p class="dictionary__paragraph">E</p></div>
+                    <div class="dictionary__word_F"><p class="dictionary__paragraph">F</p></div>
+                    <div class="dictionary__word_G"><p class="dictionary__paragraph">G</p></div>
+                    <div class="dictionary__word_H"><p class="dictionary__paragraph">H</p></div>
+                    <div class="dictionary__word_I"><p class="dictionary__paragraph">I</p></div>
+                    <div class="dictionary__word_J"><p class="dictionary__paragraph">J</p></div>
+                    <div class="dictionary__word_K"><p class="dictionary__paragraph">K</p></div>
+                    <div class="dictionary__word_L"><p class="dictionary__paragraph">L</p></div>
+                    <div class="dictionary__word_M"><p class="dictionary__paragraph">M</p></div>
+                    <div class="dictionary__word_N"><p class="dictionary__paragraph">N</p></div>
+                    <div class="dictionary__word_O"><p class="dictionary__paragraph">O</p></div>
+                    <div class="dictionary__word_P"><p class="dictionary__paragraph">P</p></div>
+                    <div class="dictionary__word_Q"><p class="dictionary__paragraph">Q</p></div>
+                    <div class="dictionary__word_R"><p class="dictionary__paragraph">R</p></div>
+                    <div class="dictionary__word_S"><p class="dictionary__paragraph">S</p></div>
+                    <div class="dictionary__word_T"><p class="dictionary__paragraph">T</p></div>
+                    <div class="dictionary__word_U"><p class="dictionary__paragraph">U</p></div>
+                    <div class="dictionary__word_V"><p class="dictionary__paragraph">V</p></div>
+                    <div class="dictionary__word_W"><p class="dictionary__paragraph">W</p></div>
+                    <div class="dictionary__word_X"><p class="dictionary__paragraph">X</p></div>
+                    <div class="dictionary__word_Y"><p class="dictionary__paragraph">Y</p></div>
+                    <div class="dictionary__word_Z"><p class="dictionary__paragraph">Z</p></div>
             </div>
         </div>
     </div>
 
+    <!-- Сам словарь (Rus) -->
+    <div class="dictionaryRus dictionary">
+        <div class="dictionary__dialog"> 
+            <div class="dictionary__content"> 
+                <div class="dictionary__close" data-close>&times;</div>
+                        <div class="dictionary__word_a"><p class="dictionary__paragraph">А</p></div>
+                        <div class="dictionary__word_b"><p class="dictionary__paragraph">Б</p></div>
+                        <div class="dictionary__word_v"><p class="dictionary__paragraph">В</p></div>
+                        <div class="dictionary__word_g"><p class="dictionary__paragraph">Г</p></div>
+                        <div class="dictionary__word_d"><p class="dictionary__paragraph">Д</p></div>
+                        <div class="dictionary__word_e"><p class="dictionary__paragraph">Е</p></div>
+                        <div class="dictionary__word_e`"><p class="dictionary__paragraph">Ё</p></div>
+                        <div class="dictionary__word_zh"><p class="dictionary__paragraph">Ж</p></div>
+                        <div class="dictionary__word_z"><p class="dictionary__paragraph">З</p></div>
+                        <div class="dictionary__word_i"><p class="dictionary__paragraph">И</p></div>
+                        <div class="dictionary__word_y`"><p class="dictionary__paragraph">Й</p></div>
+                        <div class="dictionary__word_k"><p class="dictionary__paragraph">К</p></div>
+                        <div class="dictionary__word_l"><p class="dictionary__paragraph">Л</p></div>
+                        <div class="dictionary__word_m"><p class="dictionary__paragraph">М</p></div>
+                        <div class="dictionary__word_n"><p class="dictionary__paragraph">Н</p></div>
+                        <div class="dictionary__word_o"><p class="dictionary__paragraph">О</p></div>
+                        <div class="dictionary__word_p"><p class="dictionary__paragraph">П</p></div>
+                        <div class="dictionary__word_r"><p class="dictionary__paragraph">Р</p></div>
+                        <div class="dictionary__word_s"><p class="dictionary__paragraph">С</p></div>
+                        <div class="dictionary__word_t"><p class="dictionary__paragraph">Т</p></div>
+                        <div class="dictionary__word_u"><p class="dictionary__paragraph">У</p></div>
+                        <div class="dictionary__word_f"><p class="dictionary__paragraph">Ф</p></div>
+                        <div class="dictionary__word_h"><p class="dictionary__paragraph">Х</p></div>
+                        <div class="dictionary__word_c"><p class="dictionary__paragraph">Ц</p></div>
+                        <div class="dictionary__word_ch"><p class="dictionary__paragraph">Ч</p></div>
+                        <div class="dictionary__word_sh"><p class="dictionary__paragraph">Ш</p></div>
+                        <div class="dictionary__word_sch"><p class="dictionary__paragraph">Щ</p></div>
+                        <div class="dictionary__word_e"><p class="dictionary__paragraph">Э</p></div>
+                        <div class="dictionary__word_yu"><p class="dictionary__paragraph">Ю</p></div>
+                        <div class="dictionary__word_ya"><p class="dictionary__paragraph">Я</p></div>
+                </div>
+            </div>
+    </div>
+</div>
     <script src="js/scripts.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
-@charset "UTF-8";
 .app {
-  width: 100vw;
+  width: 100%;
+  height: 300px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .main {
@@ -11,7 +11,6 @@
   width: 920px;
   border-radius: 12px;
   padding: 32px;
-  margin: 0 auto;
 }
 
 h1 {
@@ -24,6 +23,7 @@ h1 {
 .form {
   margin-top: 32px;
   display: flex;
+  flex-wrap: wrap;
   -moz-column-gap: 16px;
        column-gap: 16px;
 }
@@ -43,6 +43,7 @@ h1 {
   border: 2px solid #e7cfeb;
 }
 .form button {
+  border: 3px solid red;
   width: 25%;
   border-radius: 4px;
   background: #000;
@@ -52,74 +53,156 @@ h1 {
   background: rgba(0, 0, 0, 0.8);
 }
 
-.results {
-  margin-top: 16px;
-  background: rgba(240, 233, 241, 0.5);
-  padding: 12px;
-  border-radius: 6px;
-  color: rgb(74, 74, 74);
-}
-.results-list {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 14px;
-}
-.results-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 .results-word {
   font-size: 32px;
   font-weight: 700;
+  color: rgb(74, 74, 74);
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
-.results-item__part {
-  font-size: 14px;
-  color: #a164cf;
-  font-weight: 700;
+
+.modal {
+  width: 30%;
 }
-.results-item__definitions {
-  margin-top: 5px;
+.modal__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  background-color: rgb(85, 85, 85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.modal__close {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  cursor: pointer;
+  font-size: 40px;
+  color: #000;
+}
+.modal__title {
+  font-size: 22px;
+  display: block;
+}
+.modal__input {
+  display: block;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  font-size: 18px;
+  outline: 1px solid black;
+  border-radius: 10px;
+}
+
+.btn {
+  width: 30%;
+  height: 60px;
+  border-radius: 10px;
+  background: #000;
+  cursor: pointer;
+  font-size: 20px;
+}
+.btn:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dictionary {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1051;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dictionary__dialog {
+  max-width: 1300px;
+  margin: 90px auto;
+}
+.dictionary__content {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  max-height: 70vh;
+  overflow-y: auto;
+  color: black;
+}
+.dictionary__close {
+  position: absolute;
+  top: -7px;
+  right: 14px;
+  cursor: pointer;
+  font-size: 50px;
+  color: #000;
+}
+.dictionary__words {
+  padding: 0;
+  margin: 0;
+  max-width: 25%;
+  max-height: 100%;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  flex-wrap: wrap;
 }
-.results-item__definition {
-  position: relative;
-  box-shadow: 0px 0px 10px 0px rgba(125, 125, 125, 0.15);
-  padding: 16px;
-  border-radius: 4px;
-}
-.results-item__definition p {
+.dictionary__deleteBtn {
+  width: 80px;
+  height: 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: #000;
+  cursor: pointer;
   font-size: 20px;
-  position: relative;
 }
-.results-item__example {
-  border-top: 1px solid rgba(125, 125, 125, 0.15);
-  padding-top: 5px;
-  margin-top: 5px;
-  color: rgb(114, 114, 114);
+.dictionary__deleteBtn:hover {
+  background: rgba(0, 0, 0, 0.5);
 }
-.results-item__example p {
-  position: relative;
-  padding-left: 16px;
-  font-size: 14px;
+.dictionary__word {
+  font-size: 20px;
+  background-color: rgb(114, 114, 114);
+  border-bottom: 1px solid black;
 }
-.results-item__example p::before {
-  width: 20px;
-  height: 100%;
-  content: "»";
+.dictionary__paragraph {
+  border-bottom: 1px solid black;
+  font-size: 60px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.show {
   display: block;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0px;
-  font-size: 20px;
 }
-.results-item__example p span {
-  font-size: 16px;
-  font-style: italic;
+
+.none {
+  display: none;
+}
+
+.showDictionary {
+  display: block;
+}
+
+.closeDictionary {
+  display: none;
+}
+
+span {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.element {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: black;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .error {
@@ -129,5 +212,4 @@ h1 {
   color: rgb(74, 74, 74);
   border-radius: 4px;
   margin-top: 16px;
-  display: none;
 }/*# sourceMappingURL=styles.css.map */
